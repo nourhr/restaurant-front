@@ -9,7 +9,7 @@ export class IngredientsService {
 
   constructor(private http: HttpClient) { }
 
-  base_url = 'http://127.0.0.1:8082/koujinti/api/v1/';
+  base_url = 'http://localhost:8080/SpringMVC/servlet/api/v1/';
 
   createHeaders(headers: HttpHeaders) {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
@@ -22,7 +22,10 @@ export class IngredientsService {
   getAll(): Promise<Ingredient[]> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
+    console.log('ho')
     return this.http.get<Ingredient[]>(`${this.base_url}ingredients`, {headers}).toPromise();
+
+
   }
 
   // post
