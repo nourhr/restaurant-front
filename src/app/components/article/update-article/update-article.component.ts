@@ -68,9 +68,9 @@ export class UpdateArticleComponent implements OnInit {
   async updateArticle() {
     this.idCateg = this.category.value;
     this.article = {
-      title: this.title.value,
+      /*title: this.title.value,
       content: this.content.value,
-      author: this.author.value,
+      author: this.author.value,*/
     };
     const r = await this.articleService.update(this.article, this.article_id, this.idCateg);
     this.router.navigate(['/articles']);

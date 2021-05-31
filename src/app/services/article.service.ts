@@ -12,7 +12,7 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  base_url = 'http://127.0.0.1:8082/koujinti/api/v1/';
+  base_url = 'http://localhost:8085/SpringMVC/servlet/api/v1/';
 
   createHeaders(headers: HttpHeaders) {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
@@ -23,28 +23,32 @@ export class ArticleService {
   getAll(): Promise<Article[]> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.get<Article[]>(`${this.base_url}articles`, {headers}).toPromise();
+    return this.http.get<Article[]>(`${this.base_url}platPrin`, {headers}).toPromise();
   }
 
-  // post
-  create(article: Article, idCateg: number): Promise<Article> {
+  // post http://localhost:8085/SpringMVC/servlet/api/v1/platPrin/
+  create(article: Article): Promise<Article> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.post<Article>(`${this.base_url}articles/${idCateg}`, article, {headers}).toPromise();
+    return this.http.post<Article>(`${this.base_url}platPrin`, article, {headers}).toPromise();
+
+    /*createActivity(body: any, userId: number){
+      return this.apiService.post('/activities/add/'+userId,body);
+    }*/
   }
 
-  // put (update)
-  update(article: Article, articleId: number,  idCateg: number): Promise<any> | null {
+  // put (update) ${articleId}
+  update(article: Article, idPlat: number,  idCateg: number): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.put<Article>(`${this.base_url}articles/${articleId}/${idCateg}`, article, {headers}).toPromise();
+    return this.http.put<Article>(`${this.base_url}articles/${idCateg}`, article, {headers}).toPromise();
   }
 
-  // delete
-  delete(article_id: number): Promise<any> | null {
+  // delete  http://localhost:8085/SpringMVC/servlet/api/v1/platPrin/{id}
+  delete(id: number): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.delete<Article>(`${this.base_url}articles/${article_id}`, {headers}).toPromise();
+    return this.http.delete<Article>(`${this.base_url}platPrin/${id}`, {headers}).toPromise();
   }
   // get by id
   getArticleById(id: number): Promise<Article> {

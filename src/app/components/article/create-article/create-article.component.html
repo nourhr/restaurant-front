@@ -1,28 +1,25 @@
 <form action="" [formGroup]="articleForm" (ngSubmit)="addArticle()">
   <div class="form-group container">
-    <H4> Create Article</H4>
+    <H4> Create Plat</H4>
     <fieldset>
       <input type="text"
-             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('title').touched && articleForm.get('title').errors != null}"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('nomPlat').touched && articleForm.get('nomPlat').errors != null}"
              class="m-3 form-control"
-             placeholder="Title"
-             formControlName="title">
+             placeholder="nomPlat"
+             formControlName="nomPlat">
       <textarea  type="text"
-             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('content').touched && articleForm.get('content').errors != null}"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('description').touched && articleForm.get('description').errors != null}"
              class="m-3 form-control"
-             placeholder="Content"
-             formControlName="content">
+             placeholder="description"
+             formControlName="description">
       </textarea>
-      <input type="text"
-             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('author').touched && articleForm.get('author').errors != null}"
-             class="m-3 form-control"
-             placeholder="Author"
-             formControlName="author">
+      
+     
       <select matNativeControl required class="m-3 form-control"
               formControlName="category" >
-        <option *ngFor="let categ of listCateg; let i = index" [value]="categ.id">{{categ.title}}</option>
+        <option *ngFor="let categ of listCateg; let i = index" [value]="categ.idCat">{{categ.nomCat}}</option>
       </select>
     </fieldset>
-    <button class="btn btn-success" [disabled]="articleForm.invalid">Add Article</button>
+    <button class="btn btn-success" [disabled]="articleForm.invalid">Add Plat</button>
   </div>
 </form>

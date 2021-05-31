@@ -1,10 +1,15 @@
 
 import { Category } from './category.model';
 
-export interface Article {
-    id?: number;
-    title?: string;
-    content?: string;
+export interface Article{
+    idPlat?: number;
+    nomPlat?: string;
+    description?: string;
+    categories?: Category[];
+    /* idPlat?: number;
+    nomPlat?: string;
+    description?: string;
     author?: number;
-    category?: Category;
+    category?: Category; */
+    
 }

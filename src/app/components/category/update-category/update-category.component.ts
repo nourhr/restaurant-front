@@ -29,7 +29,7 @@ export class UpdateCategoryComponent implements OnInit {
 
 
   get title() {
-    return this.categoryForm1.get('title');
+    return this.categoryForm1.get('nomCat');
   }
   async show()  {
     this.route.paramMap.subscribe(params => {
@@ -43,7 +43,7 @@ export class UpdateCategoryComponent implements OnInit {
 
   async updateCategory() {
     this.category = {
-      title: this.title.value
+      nomCat: this.title.value
     };
     const r = await this.categoryService.update(this.category, this.category_id);
     this.router.navigate(['/category']);
