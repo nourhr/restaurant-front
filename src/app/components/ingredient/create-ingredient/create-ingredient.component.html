@@ -22,7 +22,7 @@
       placeholder="Price"
       formControlName="price">
       <h4>Select Stores</h4>
-      <select matNativeControl required class="m-3 form-control"
+      <select matNativeControl class="m-3 form-control"
       formControlName="store" >
           <option class="form-control" *ngFor="let ing of stores; let i = index" [value]="ing.id">{{ing.name}}</option>
       </select>
