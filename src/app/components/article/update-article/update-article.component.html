@@ -1,31 +1,28 @@
-<form action="" [formGroup]="articleForm1" (ngSubmit)="updateArticle()">
+<form action="" [formGroup]="articleForm" (ngSubmit)="updateArticle()">
   <div class="form-group container">
-    <H4> Update Article</H4>
+    <H4> Update Dish</H4>
     <fieldset>
       <input type="text"
-             [ngClass]="{'is-invalid': articleForm1.invalid && articleForm1.get('title').touched && articleForm1.get('title').errors != null}"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('nomPlat').touched && articleForm.get('nomPlat').errors != null}"
              class="m-3 form-control"
-             [(ngModel)]='article.title'
-             placeholder="Title"
-             formControlName="title">
-      <input type="textarea"
-             [ngClass]="{'is-invalid': articleForm1.invalid && articleForm1.get('content').touched && articleForm1.get('content').errors != null}"
+             placeholder="nomPlat"
+             formControlName="nomPlat">
+      <textarea  type="text"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('description').touched && articleForm.get('description').errors != null}"
              class="m-3 form-control"
-             [(ngModel)]='article.content'
-             placeholder="Content"
-             formControlName="content">
-      <input type="text"
-             [ngClass]="{'is-invalid': articleForm1.invalid && articleForm1.get('author').touched && articleForm1.get('author').errors != null}"
-             class="m-3 form-control"
-             [(ngModel)]='article.author'
-             placeholder="Author"
-             formControlName="author">
-
+             placeholder="description"
+             formControlName="description">
+      </textarea>     
+     
       <select matNativeControl required class="m-3 form-control"
-              formControlName="category" ngModel="article.category">
-        <option  *ngFor="let categ of listCateg; let i = index" [value]="categ.id" >{{categ.title}}</option>
+              formControlName="categorie" >
+        <option *ngFor="let categorie of categories; let i = index" [ngValue]="categorie.idCat">{{categorie.nomCat}}</option>
+      </select>
+      <select matNativeControl required class="m-3 form-control"
+              formControlName="restaurant" >
+        <option *ngFor="let restaurant of restaurants; let i = index" [ngValue]="restaurant.idResto">{{restaurant.nomRes}}</option>
       </select>
     </fieldset>
-    <button class="btn btn-success" [disabled]="articleForm1.invalid">Update Article</button>
+    <button class="btn btn-success" >Update Dish</button>
   </div>
 </form>

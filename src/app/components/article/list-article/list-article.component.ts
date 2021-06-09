@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/category.model';
 import {Article} from '../../../models/article.model';
 import {ArticleService} from '../../../services/article.service';
 
@@ -18,6 +19,7 @@ export class ListArticleComponent implements OnInit {
   }
 
   async getAllArticles() {
+    
     try {
       this.loading = true;
       this.articles = await this.articleService.getAll();
@@ -30,12 +32,13 @@ export class ListArticleComponent implements OnInit {
     }
   }
 
-  deleteArticle(id: number) {
-    console.log(id);
-    this.articleService.delete(id).then(
+  deleteArticle(idPlat: number) {
+    console.log(idPlat);
+    this.articleService.delete(idPlat).then(
       value => this.getAllArticles()
     );
   }
+  
 
 
 }
