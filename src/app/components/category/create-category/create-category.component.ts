@@ -31,7 +31,7 @@ export class CreateCategoryComponent implements OnInit {
 
   // getters
   get title() {
-    return this.categoryForm.get('title');
+    return this.categoryForm.get('nomCat');
   }
   async init() {
     //this.listCateg = await this.categoryService.getAll();
@@ -40,7 +40,7 @@ export class CreateCategoryComponent implements OnInit {
   async addCategory() {
     // init object with data from form
     this.category = {
-      title: this.title.value
+      nomCat: this.title.value
     };
     const s = await this.categoryService.create(this.category);
     this.router.navigate(['/category']);

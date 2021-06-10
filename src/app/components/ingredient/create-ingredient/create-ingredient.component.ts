@@ -41,7 +41,7 @@ export class CreateIngredientComponent implements OnInit {
 
   // Get list stores
   async getStores() {
-    //this.stores = await this.storeService.getAll();
+    this.stores = await this.storeService.getAll();
   }
 
     // getters
@@ -72,9 +72,9 @@ export class CreateIngredientComponent implements OnInit {
       reference: this.reference.value,
       quantity: this.quantity.value,
       price: this.price.value,
-     // store: {
-        //id: this.store.value,
-      //}
+      store: {
+        id: this.store.value,
+      }
     };
     this.ingredientService.create(this.ingredient).then(
       value => this.router.navigate(['/ingredients'])

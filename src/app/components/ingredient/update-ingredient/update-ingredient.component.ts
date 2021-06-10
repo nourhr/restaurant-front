@@ -36,64 +36,62 @@ export class UpdateIngredientComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.getStores();
-    //this.getIngredientById();
+    this.getStores();
+    this.getIngredientById();
   }
-  /*
-   // getters
-   get name() {
-     return this.ingredientForm.get('name');
-   }
 
-   get reference() {
-     return this.ingredientForm.get('reference');
-   }
+  // getters
+  get name() {
+    return this.ingredientForm.get('name');
+  }
 
-   get quantity() {
-     return this.ingredientForm.get('quantity');
-   }
+  get reference() {
+    return this.ingredientForm.get('reference');
+  }
 
-   get price() {
-     return this.ingredientForm.get('price');
-   }
+  get quantity() {
+    return this.ingredientForm.get('quantity');
+  }
 
-   get store() {
-     return this.ingredientForm.get('store');
-   }
+  get price() {
+    return this.ingredientForm.get('price');
+  }
 
-
-   // initial store
-   getIngredientById() {
-     this.ingredient = {
-       name: '',
-       price: null,
-       reference: '',
-       quantity: null,
-       store: {id: null} };
-     this.activatedrouter.paramMap.subscribe(result => {
-       this.idIngredient = Number(result.get('id'));
-       this.ingredientService.getById(this.idIngredient).then(
-         ingredient => {
-           this.ingredient = ingredient;
-         }
-       );
-     });
-   }
-
-   Get list stores
-   async getStores() {
-     await this.storeService.getAll().then(
-       stores => this.stores = stores
-     );
-   }
+  get store() {
+    return this.ingredientForm.get('store');
+  }
 
 
+  // initial store
+  getIngredientById() {
+    this.ingredient = {
+      name: '',
+      price: null,
+      reference: '',
+      quantity: null,
+      store: {id: null} };
+    this.activatedrouter.paramMap.subscribe(result => {
+      this.idIngredient = Number(result.get('id'));
+      this.ingredientService.getById(this.idIngredient).then(
+        ingredient => {
+          this.ingredient = ingredient;
+        }
+      );
+    });
+  }
 
-   updateIngredient() {
-     this.ingredient.store = {id: this.store.value};
-     this.ingredientService.update(this.ingredient).then(
-       ingredient => this.router.navigate(['/ingredients'])
-     );
-   }
-  */
+  // Get list stores
+  async getStores() {
+    await this.storeService.getAll().then(
+      stores => this.stores = stores
+    );
+  }
+
+  updateIngredient() {
+    this.ingredient.store = {id: this.store.value};
+    this.ingredientService.update(this.ingredient).then(
+      ingredient => this.router.navigate(['/ingredients'])
+    );
+  }
+
 }

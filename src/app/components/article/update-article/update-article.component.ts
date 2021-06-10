@@ -16,65 +16,71 @@ export class UpdateArticleComponent implements OnInit {
 
   // Attributes
   article: Article;
-  article_id: any;
-  listCateg: Category[];
-  categ: Category;
-  idCateg: any;
+  idCat: Number;
+  idPlat;
+  nomCat: String;
+  categories: Category[];
+  
+
   // Form groupe add Category project
-  articleForm1: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    content: new FormControl('', [Validators.required]),
-    author: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required])
+  articleForm: FormGroup = new FormGroup({
+    nomPlat: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    description: new FormControl('', [Validators.required]),
+    categorie: new FormControl('', [Validators.required]),
+
   });
-  constructor(private articleService: ArticleService,
-              private categoryService: CategoryService,
-              private router: Router,
-              private readonly route: ActivatedRoute) { }
+
+
+  constructor(private articleService: ArticleService, private router: Router,
+    private readonly route: ActivatedRoute, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.init();
+    this.getCategories();
     this.show();
+    this.updateArticle();
+
+  }
+  async getCategories() {
+
+    this.categories = await this.categoryService.getAll();
+
   }
 
 
-  // getters
-  get title() {
-    return this.articleForm1.get('title');
+  get categorie() {
+    return this.articleForm.get('categorie');
   }
-
-  get content() {
-    return this.articleForm1.get('content');
+  //getters 
+  get nomPlat() {
+    return this.articleForm.get('nomPlat');
   }
-  get author() {
-    return this.articleForm1.get('author');
-  }
-  get category() {
-    return this.articleForm1.get('category');
-  }
-  async init() {
-    this.listCateg = await this.categoryService.getAll();
+  get description() {
+    return this.articleForm.get('description');
   }
   async show()  {
     this.route.paramMap.subscribe(params => {
-      this.article_id = params.get('id');
-    });
-    this.article = await this.articleService.getArticleById(this.article_id);
-    //this.title.setValue(this.category.title);
-    //this.categoryForm1.controls['title'].setValue(this.category.title);
-    console.log(this.category);
+      this.idPlat = params.get("id");
+      });
+      this.article = await this.articleService.getById(this.idPlat);
+      this.nomPlat.setValue(this.article.nomPlat);
+      this.description.setValue(this.article.description);
+      
   }
-
   async updateArticle() {
-    this.idCateg = this.category.value;
+    // init object with data from form
+
     this.article = {
-      title: this.title.value,
-      content: this.content.value,
-      author: this.author.value,
+      
+      nomPlat: this.nomPlat.value,
+      description: this.description.value,
+      categorie: {
+        idCat: this.categorie.value,
+      }
     };
-    const r = await this.articleService.update(this.article, this.article_id, this.idCateg);
+    const r = await this.articleService.update(this.article,this.idPlat);
     this.router.navigate(['/articles']);
     console.log(r);
   }
+
 
 }
