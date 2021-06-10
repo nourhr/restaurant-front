@@ -26,6 +26,7 @@ export class CreateArticleComponent implements OnInit {
     nomPlat: new FormControl('', [Validators.required, Validators.minLength(5)]),
     description: new FormControl('', [Validators.required]),
     categorie: new FormControl('', [Validators.required]),
+    
 
   });
 

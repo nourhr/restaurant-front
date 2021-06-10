@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Article} from '../../../models/article.model';
-import {ArticleService} from '../../../services/article.service';
-import {Category} from '../../../models/category.model';
-import {CategoryService} from '../../../services/category.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Article } from '../../../models/article.model';
+import { ArticleService } from '../../../services/article.service';
+import { Category } from '../../../models/category.model';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-update-article',
@@ -20,7 +20,7 @@ export class UpdateArticleComponent implements OnInit {
   idPlat;
   nomCat: String;
   categories: Category[];
-  
+
 
   // Form groupe add Category project
   articleForm: FormGroup = new FormGroup({
@@ -38,7 +38,6 @@ export class UpdateArticleComponent implements OnInit {
     this.getCategories();
     this.show();
     this.updateArticle();
-
   }
   async getCategories() {
 
@@ -57,27 +56,31 @@ export class UpdateArticleComponent implements OnInit {
   get description() {
     return this.articleForm.get('description');
   }
-  async show()  {
+  async show() {
     this.route.paramMap.subscribe(params => {
       this.idPlat = params.get("id");
-      });
-      this.article = await this.articleService.getById(this.idPlat);
-      this.nomPlat.setValue(this.article.nomPlat);
-      this.description.setValue(this.article.description);
-      
+       
+    });
+    this.article = await this.articleService.getById(this.idPlat);
+
+    this.nomPlat.setValue(this.article.nomPlat);
+    this.description.setValue(this.article.description);
+    this.categorie.setValue(this.article.categorie.nomCat);
+
+
   }
   async updateArticle() {
     // init object with data from form
 
     this.article = {
-      
+
       nomPlat: this.nomPlat.value,
       description: this.description.value,
       categorie: {
         idCat: this.categorie.value,
       }
     };
-    const r = await this.articleService.update(this.article,this.idPlat);
+    const r = await this.articleService.update(this.article, this.idPlat);
     this.router.navigate(['/articles']);
     console.log(r);
   }
