@@ -14,18 +14,18 @@ export class ArticleService {
 
   constructor(private http: HttpClient,private httpClient: HttpClient) { }
 
-  base_url = 'http://localhost:8085/SpringMVC/servlet/api/v1/';
- 
+  base_url = 'http://localhost:8080/SpringMVC/servlet/api/v1/';
+
 
   createHeaders(headers: HttpHeaders) {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
     headers.append('Content-Type' , 'application/json');
     headers.append('Access-Control-Allow-Origin' , '*'); // Access-Control-Allow-Origin: https://www.mydomain.com
     headers.append('Access-Control-Allow-Methods' , 'GET, POST, PUT')
-  
-    
+
+
   }
-  
+
 
   // get
   getAll(): Promise<Article[]> {
@@ -58,7 +58,7 @@ export class ArticleService {
     return this.httpClient.put(`${this.base_url}/${id}`, article ).pipe(catchError(this.handleError));
   }
 
-  // delete  http://localhost:8085/SpringMVC/servlet/api/v1/platPrin/{id} 
+  // delete  http://localhost:8085/SpringMVC/servlet/api/v1/platPrin/{id}
   delete(id: number): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);

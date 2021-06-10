@@ -12,12 +12,12 @@
              class="m-3 form-control"
              placeholder="description"
              formControlName="description">
-      </textarea>     
-     
-      <select matNativeControl required class="m-3 form-control"
+      </textarea>
+
+      <select matNativeControl  required class="m-3 form-control"
              formControlName="categorie" >
         <option *ngFor="let categorie of categories; let i = index" [ngValue]="categorie.idCat">{{categorie.nomCat}}</option>
-      </select> 
+      </select>
     </fieldset>
     <button class="btn btn-success" [disabled]="articleForm.invalid">Add Dish</button>
   </div>

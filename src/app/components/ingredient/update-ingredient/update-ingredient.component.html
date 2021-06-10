@@ -25,15 +25,15 @@
       placeholder="Price"
       [(ngModel)]=ingredient.price
       formControlName="price">
-      <h4>Select Stores</h4>
+      <h4>choisir un plat personalise</h4>
       <select
       matNativeControl
       required
       class="m-3 form-control"
-      formControlName="store" >
-          <option class="form-control" *ngFor="let ing of stores; let i = index" [value]="ing.id">{{ing.name}}</option>
+      formControlName="recipe" >
+          <option class="form-control" *ngFor="let ing of recipes; let i = index" [value]="ing.id">{{ing.nomPlatPerso}}</option>
       </select>
     </fieldset>
-    <button class="btn btn-success" [disabled]="ingredientForm.invalid">Add Store</button>
+    <button class="btn btn-success" [disabled]="ingredientForm.invalid">Ajouter plat</button>
   </div>
 </form>

@@ -1,10 +1,11 @@
 import { RecipeIngredient } from './recipe-ingredient.model';
 
 export interface Recipe {
-    id?: number;
-    name?: string;
+  idPlatPerso?: number;
+    nomPlatPerso?: string;
     description?: string;
-    time?: string;
-    nbrPersons?: number;
+    descrPlatPerso?: string;
+    resto?: number;
+    categorie?: number;
     ingredients?: RecipeIngredient[];
 }

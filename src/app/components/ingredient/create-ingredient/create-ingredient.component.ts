@@ -1,10 +1,10 @@
+import { Recipe } from './../../../models/recipe.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient.model';
-import { Store } from 'src/app/models/store.model';
 import { IngredientsService } from 'src/app/services/ingredients.service';
-import { StoreService } from 'src/app/services/store.service';
+import { RecipeService  } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-create-ingredient',
@@ -17,7 +17,7 @@ export class CreateIngredientComponent implements OnInit {
   // initial data
   ingredient: Ingredient;
   store_id: number;
-  stores: Store[];
+  recipes: Recipe[];
 
   // Form groupe add ingredient
   ingredientForm: FormGroup = new FormGroup({
@@ -25,13 +25,13 @@ export class CreateIngredientComponent implements OnInit {
     reference: new FormControl('', [Validators.required, Validators.minLength(3)]),
     quantity: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
-    store: new FormControl('')
+   recipe: new FormControl('')
   });
 
 
   constructor(
     private ingredientService: IngredientsService,
-    private storeService: StoreService,
+    private recipeService: RecipeService,
     private router: Router
   ) { }
 
@@ -41,7 +41,8 @@ export class CreateIngredientComponent implements OnInit {
 
   // Get list stores
   async getStores() {
-    this.stores = await this.storeService.getAll();
+    this.recipes = await this.recipeService.getAll();
+    console.log(this.recipes)
   }
 
     // getters
@@ -61,24 +62,29 @@ export class CreateIngredientComponent implements OnInit {
       return this.ingredientForm.get('price');
     }
 
-    get store() {
-      return this.ingredientForm.get('store');
+    get recipe() {
+      return this.ingredientForm.get('recipe');
     }
 
 
-  addIngredient() {
+    async addIngredient() {
     this.ingredient = {
       name: this.name.value,
       reference: this.reference.value,
       quantity: this.quantity.value,
       price: this.price.value,
-      store: {
-        id: this.store.value,
+      recipe: {
+        idPlatPerso: this.recipe.value,
+
       }
     };
-    this.ingredientService.create(this.ingredient).then(
-      value => this.router.navigate(['/ingredients'])
-    );
+    const s = await this.ingredientService.create(this.ingredient);
+    this.router.navigate(['/ingredients']);
+    console.log(s);
+
+    //  const s = await this.ingredientService.create(this.ingredient).then(
+    //   value => this.router.navigate(['/ingredients'])
+    // );
   }
 
 }

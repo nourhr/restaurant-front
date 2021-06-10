@@ -12,8 +12,8 @@
                 <p *ngIf="ingredient.quantity" class="card-text">quantity :  {{ingredient.quantity}} Kg</p>
                 <p *ngIf="ingredient.store" class="card-text">store :  {{ingredient.store.name}} / {{ingredient.store.address}}</p>
               </div>
-              <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteIngredient(ingredient.id)">Delete</button>
-              <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/ingredients/', ingredient.id]">Edit</button>
+              <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteIngredient(ingredient.id)">Suprimé</button>
+              <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/ingredients/', ingredient.id]">Modifier</button>
             </div>
           </li>
         </ul>

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient.model';
-import { Store } from 'src/app/models/store.model';
+import { Recipe } from 'src/app/models/recipe.model';
 import { IngredientsService } from 'src/app/services/ingredients.service';
-import { StoreService } from 'src/app/services/store.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-update-ingredient',
@@ -16,7 +16,7 @@ export class UpdateIngredientComponent implements OnInit {
   // initial data
   ingredient: Ingredient;
   idIngredient: number;
-  stores: Store[];
+  recipes: Recipe[];
 
   // Form groupe add ingredient
   ingredientForm: FormGroup = new FormGroup({
@@ -28,7 +28,7 @@ export class UpdateIngredientComponent implements OnInit {
   });
 
   constructor(
-    private storeService: StoreService,
+    private recipeService: RecipeService,
     private ingredientService: IngredientsService,
     private activatedrouter: ActivatedRoute,
     private router: Router
@@ -57,8 +57,8 @@ export class UpdateIngredientComponent implements OnInit {
     return this.ingredientForm.get('price');
   }
 
-  get store() {
-    return this.ingredientForm.get('store');
+  get recipe() {
+    return this.ingredientForm.get('recipe');
   }
 
 
@@ -69,7 +69,7 @@ export class UpdateIngredientComponent implements OnInit {
       price: null,
       reference: '',
       quantity: null,
-      store: {id: null} };
+      recipe: {idPlatPerso: null} };
     this.activatedrouter.paramMap.subscribe(result => {
       this.idIngredient = Number(result.get('id'));
       this.ingredientService.getById(this.idIngredient).then(
@@ -82,13 +82,13 @@ export class UpdateIngredientComponent implements OnInit {
 
   // Get list stores
   async getStores() {
-    await this.storeService.getAll().then(
-      stores => this.stores = stores
+    await this.recipeService.getAll().then(
+      recipes => this.recipes = recipes
     );
   }
 
   updateIngredient() {
-    this.ingredient.store = {id: this.store.value};
+    this.ingredient.recipe= {idPlatPerso: this.recipe.value};
     this.ingredientService.update(this.ingredient).then(
       ingredient => this.router.navigate(['/ingredients'])
     );

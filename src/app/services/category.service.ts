@@ -10,14 +10,14 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  base_url = 'http://localhost:8085/SpringMVC/servlet/api/v1/';
+  base_url = 'http://localhost:8080/SpringMVC/servlet/api/v1/';
 
   createHeaders(headers: HttpHeaders) {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
     headers.append('Content-Type' , 'application/json');
     headers.append('Access-Control-Allow-Origin' , '*'); // Access-Control-Allow-Origin: https://www.mydomain.com
   }
-  // get 
+  // get
   getAll(): Promise<Category[]> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);

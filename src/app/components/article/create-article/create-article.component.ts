@@ -19,7 +19,7 @@ export class CreateArticleComponent implements OnInit {
   idCat: Number;
   nomCat: String;
   categories: Category[];
-  
+
 
   // Form groupe add Category project
   articleForm: FormGroup = new FormGroup({
@@ -47,7 +47,7 @@ export class CreateArticleComponent implements OnInit {
   get categorie() {
     return this.articleForm.get('categorie');
   }
-  //getters 
+  //getters
   get nomPlat() {
     return this.articleForm.get('nomPlat');
   }

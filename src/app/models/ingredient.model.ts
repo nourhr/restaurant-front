@@ -1,10 +1,10 @@
-import { Store } from './store.model';
+import { Recipe} from './recipe.model';
 
 export interface Ingredient {
     id?: number;
     reference?: string;
     name?: string;
-    store?: Store;
+    recipe?: Recipe;
     quantity?: number;
     price?: number;
 }
