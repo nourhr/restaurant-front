@@ -4,7 +4,9 @@ export interface Ingredient {
     id?: number;
     reference?: string;
     name?: string;
-    recipe?: Recipe;
+    //recipe?: string;
+
+    platPersonalise?: Recipe;
     quantity?: number;
     price?: number;
 }

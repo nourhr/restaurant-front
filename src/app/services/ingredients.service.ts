@@ -13,8 +13,10 @@ export class IngredientsService {
 
   createHeaders(headers: HttpHeaders) {
      headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
-   // headers.append('Content-Type' , 'application/json');
+    headers.append('Content-Type' , 'application/json');
     headers.append('Access-Control-Allow-Origin' , '*'); // Access-Control-Allow-Origin: https://www.mydomain.com
+   headers.append('Access-Control-Allow-Methods' , 'GET, POST, PUT')
+
   }
 
 
@@ -39,7 +41,7 @@ export class IngredientsService {
   update(ingredient: Ingredient): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.put<Ingredient>(`${this.base_url}ingredients/${ingredient.id}`, ingredient, {headers}).toPromise();
+    return this.http.put<Ingredient>(`${this.base_url}ingredients`, ingredient, {headers}).toPromise();
   }
 
   // delete

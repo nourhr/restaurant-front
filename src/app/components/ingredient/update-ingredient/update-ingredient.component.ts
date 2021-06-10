@@ -24,7 +24,7 @@ export class UpdateIngredientComponent implements OnInit {
     reference: new FormControl('', [Validators.required, Validators.minLength(3)]),
     quantity: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
-    store: new FormControl('')
+    recipe: new FormControl('')
   });
 
   constructor(
@@ -69,7 +69,7 @@ export class UpdateIngredientComponent implements OnInit {
       price: null,
       reference: '',
       quantity: null,
-      recipe: {idPlatPerso: null} };
+      platPersonalise: {idPlatPerso: null} };
     this.activatedrouter.paramMap.subscribe(result => {
       this.idIngredient = Number(result.get('id'));
       this.ingredientService.getById(this.idIngredient).then(
@@ -82,16 +82,31 @@ export class UpdateIngredientComponent implements OnInit {
 
   // Get list stores
   async getStores() {
-    await this.recipeService.getAll().then(
-      recipes => this.recipes = recipes
-    );
+    this.recipes = await this.recipeService.getAll();
+    console.log(this.recipes)
   }
 
-  updateIngredient() {
-    this.ingredient.recipe= {idPlatPerso: this.recipe.value};
-    this.ingredientService.update(this.ingredient).then(
-      ingredient => this.router.navigate(['/ingredients'])
-    );
+  async updateIngredient() {
+
+
+    this.ingredient = {
+      id:this.idIngredient,
+
+      name: this.name.value,
+      reference: this.reference.value,
+      quantity: this.quantity.value,
+      price: this.price.value,
+      platPersonalise: {
+        idPlatPerso: this.recipe.value,
+      }
+    };
+    const r = await this.ingredientService.update(this.ingredient);
+    this.router.navigate(['/articles']);
+    console.log(r);
+    // this.ingredient.platPersonalise= {idPlatPerso: this.recipe.value};
+    // this.ingredientService.update(this.ingredient).then(
+    //   ingredient => this.router.navigate(['/ingredients'])
+    // );
   }
 
 }

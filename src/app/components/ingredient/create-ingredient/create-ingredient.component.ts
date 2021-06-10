@@ -73,11 +73,12 @@ export class CreateIngredientComponent implements OnInit {
       reference: this.reference.value,
       quantity: this.quantity.value,
       price: this.price.value,
-      recipe: {
+      platPersonalise: {
         idPlatPerso: this.recipe.value,
 
       }
     };
+    console.log(this.ingredient)
     const s = await this.ingredientService.create(this.ingredient);
     this.router.navigate(['/ingredients']);
     console.log(s);
