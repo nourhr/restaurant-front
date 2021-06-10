@@ -27,7 +27,7 @@ export class CreateRecipeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get name() {
+  /*get name() {
     return this.recipeForm.get('name');
   }
   
@@ -47,14 +47,13 @@ export class CreateRecipeComponent implements OnInit {
   async addRecipe() {
     // init object with data from form
     this.recipe = {
-      name: this.name.value,
-      time: this.time.value,
-      nbrPersons: this.nbrPersons.value,
-      description: this.description.value
+      nomPlatPerso: this.name.value,
+      ingredients: this.time.value,
+      
     };
     const r = await this.recipeService.create(this.recipe);
     this.router.navigate(['/recipes']);
     console.log(r);
-  }
+  }*/
 
 }

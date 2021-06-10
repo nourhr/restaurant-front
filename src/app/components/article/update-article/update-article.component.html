@@ -17,11 +17,7 @@
       <select matNativeControl required class="m-3 form-control"
               formControlName="categorie" >
         <option *ngFor="let categorie of categories; let i = index" [ngValue]="categorie.idCat">{{categorie.nomCat}}</option>
-      </select>
-      <select matNativeControl required class="m-3 form-control"
-              formControlName="restaurant" >
-        <option *ngFor="let restaurant of restaurants; let i = index" [ngValue]="restaurant.idResto">{{restaurant.nomRes}}</option>
-      </select>
+      </select>      
     </fieldset>
     <button class="btn btn-success" >Update Dish</button>
   </div>

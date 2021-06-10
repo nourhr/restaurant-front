@@ -36,12 +36,12 @@ export class UpdateIngredientComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getStores();
-    this.getIngredientById();
+    //this.getStores();
+    //this.getIngredientById();
   }
 
   // getters
-  get name() {
+ /* get name() {
     return this.ingredientForm.get('name');
   }
 
@@ -92,6 +92,6 @@ export class UpdateIngredientComponent implements OnInit {
     this.ingredientService.update(this.ingredient).then(
       ingredient => this.router.navigate(['/ingredients'])
     );
-  }
+  }*/
 
 }

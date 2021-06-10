@@ -11,7 +11,7 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
-  base_url = 'http://127.0.0.1:8082/koujinti/api/v1/';
+  base_url = 'http://localhost:8085/SpringMVC/servlet/api/v1/';
 
   createHeaders(headers: HttpHeaders) {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
@@ -24,7 +24,7 @@ export class RecipeService {
   getAll(): Promise<Recipe[]> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.get<Recipe[]>(`${this.base_url}recipes`, {headers}).toPromise();
+    return this.http.get<Recipe[]>(`${this.base_url}platperso`, {headers}).toPromise();
   }
 
   getRecipeById(id:number): Promise<Recipe> {

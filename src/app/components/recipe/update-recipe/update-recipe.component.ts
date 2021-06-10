@@ -27,11 +27,11 @@ export class UpdateRecipeComponent implements OnInit {
     private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
-  this.show();
+  //this.show();
 }
 
 
-  get name() {
+ /* get name() {
     return this.recipeForm.get('name');
   }
   
@@ -73,5 +73,5 @@ export class UpdateRecipeComponent implements OnInit {
   deleteRecIng(id: number) {
     console.log(id);
     this.recipeService.deleteIngr(id);
-  }
+  }*/
 }
