@@ -1,0 +1,39 @@
+<form action="" [formGroup]="ingredientForm" (ngSubmit)="updateIngredient()">
+  <div class="form-group container">
+    <fieldset>
+      <input type="text"
+      [ngClass]="{'is-invalid': ingredientForm.invalid && ingredientForm.get('name').touched && ingredientForm.get('name').errors != null}"
+      class="m-3 form-control"
+      placeholder="Name"
+      [(ngModel)]=ingredient.name
+      formControlName="name">
+      <input type="text"
+      [ngClass]="{'is-invalid': ingredientForm.invalid && ingredientForm.get('reference').touched && ingredientForm.get('reference').errors != null}"
+      class="m-3 form-control"
+      placeholder="Reference"
+      [(ngModel)]=ingredient.reference
+      formControlName="reference">
+      <input type="number"
+      [ngClass]="{'is-invalid': ingredientForm.invalid && ingredientForm.get('quantity').touched && ingredientForm.get('quantity').errors != null}"
+      class="m-3 form-control"
+      placeholder="Quantity"
+      [(ngModel)]=ingredient.quantity
+      formControlName="quantity">
+      <input type="number"
+      [ngClass]="{'is-invalid': ingredientForm.invalid && ingredientForm.get('price').touched && ingredientForm.get('price').errors != null}"
+      class="m-3 form-control"
+      placeholder="Price"
+      [(ngModel)]=ingredient.price
+      formControlName="price">
+      <h4>Select Stores</h4>
+      <select
+      matNativeControl
+      required
+      class="m-3 form-control"
+      formControlName="store" >
+          <option class="form-control" *ngFor="let ing of stores; let i = index" [value]="ing.id">{{ing.name}}</option>
+      </select>
+    </fieldset>
+    <button class="btn btn-success" [disabled]="ingredientForm.invalid">Add Store</button>
+  </div>
+</form>

@@ -1,0 +1,31 @@
+<form action="" [formGroup]="articleForm1" (ngSubmit)="updateArticle()">
+  <div class="form-group container">
+    <H4> Update Article</H4>
+    <fieldset>
+      <input type="text"
+             [ngClass]="{'is-invalid': articleForm1.invalid && articleForm1.get('title').touched && articleForm1.get('title').errors != null}"
+             class="m-3 form-control"
+             [(ngModel)]='article.title'
+             placeholder="Title"
+             formControlName="title">
+      <input type="textarea"
+             [ngClass]="{'is-invalid': articleForm1.invalid && articleForm1.get('content').touched && articleForm1.get('content').errors != null}"
+             class="m-3 form-control"
+             [(ngModel)]='article.content'
+             placeholder="Content"
+             formControlName="content">
+      <input type="text"
+             [ngClass]="{'is-invalid': articleForm1.invalid && articleForm1.get('author').touched && articleForm1.get('author').errors != null}"
+             class="m-3 form-control"
+             [(ngModel)]='article.author'
+             placeholder="Author"
+             formControlName="author">
+
+      <select matNativeControl required class="m-3 form-control"
+              formControlName="category" ngModel="article.category">
+        <option  *ngFor="let categ of listCateg; let i = index" [value]="categ.id" >{{categ.title}}</option>
+      </select>
+    </fieldset>
+    <button class="btn btn-success" [disabled]="articleForm1.invalid">Update Article</button>
+  </div>
+</form>

@@ -1,0 +1,28 @@
+<form action="" [formGroup]="articleForm" (ngSubmit)="addArticle()">
+  <div class="form-group container">
+    <H4> Create Article</H4>
+    <fieldset>
+      <input type="text"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('title').touched && articleForm.get('title').errors != null}"
+             class="m-3 form-control"
+             placeholder="Title"
+             formControlName="title">
+      <textarea  type="text"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('content').touched && articleForm.get('content').errors != null}"
+             class="m-3 form-control"
+             placeholder="Content"
+             formControlName="content">
+      </textarea>
+      <input type="text"
+             [ngClass]="{'is-invalid': articleForm.invalid && articleForm.get('author').touched && articleForm.get('author').errors != null}"
+             class="m-3 form-control"
+             placeholder="Author"
+             formControlName="author">
+      <select matNativeControl required class="m-3 form-control"
+              formControlName="category" >
+        <option *ngFor="let categ of listCateg; let i = index" [value]="categ.id">{{categ.title}}</option>
+      </select>
+    </fieldset>
+    <button class="btn btn-success" [disabled]="articleForm.invalid">Add Article</button>
+  </div>
+</form>
