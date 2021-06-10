@@ -15,9 +15,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
-import { ListRestaurantComponent } from './components/restaurant/list-store/list-restaurant.component';
-import { CreateRestaurantComponent } from './components/restaurant/create-store/create-restaurant.component';
-import { UpdateRestaurantComponent } from './components/restaurant/update-store/update-restaurant.component';
+import { ListRestaurantComponent } from './components/restaurant/list-retaurants/list-restaurant.component';
+import { CreateRestaurantComponent } from './components/restaurant/create-restaurant/create-restaurant.component';
+import { UpdateRestaurantComponent } from './components/restaurant/update-restaurant/update-restaurant.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CreateIngredientComponent } from './components/ingredient/create-ingredient/create-ingredient.component';
 import { ListIngredientComponent } from './components/ingredient/list-ingredient/list-ingredient.component';

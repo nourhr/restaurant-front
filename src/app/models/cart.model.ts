@@ -1,5 +1,5 @@
 import { CartItem } from './cart-item.model';
-import { Store } from './store.model';
+import {Store } from './store.model';
 
 export interface Cart {
     id?: number;

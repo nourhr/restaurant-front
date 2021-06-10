@@ -11,20 +11,19 @@ export class StoreService {
 
   constructor(private http: HttpClient) { }
 
-  base_url = 'http://localhost:8085/SpringMVC/servlet/api/v1/Resto';
+  base_url = 'http://localhost:8080/SpringMVC/servlet/api/v1/Resto';
 
 
   // get
   //works
   getAll():Observable<any> {
-    return this.http.get<any>('http://localhost:8085/SpringMVC/servlet/api/v1/Resto');
+    return this.http.get<any>('http://localhost:8080/SpringMVC/servlet/api/v1/Resto');
   }
 
 
   // post
   create(store: Store): any {
-
-    return this.http.post('http://localhost:8085/SpringMVC/servlet/api/v1/Resto/',JSON.stringify(store));
+    return this.http.post<any>('http://localhost:8080/SpringMVC/servlet/api/v1/Resto/',JSON.stringify(store));
   }
 
 
@@ -37,7 +36,7 @@ export class StoreService {
   // delete
   //works
   delete(store_id: number): any{
-    return this.http.delete('http://localhost:8085/SpringMVC/servlet/api/v1/Resto/'+store_id);
+    return this.http.delete('http://localhost:8080/SpringMVC/servlet/api/v1/Resto/'+store_id);
   }
 
 

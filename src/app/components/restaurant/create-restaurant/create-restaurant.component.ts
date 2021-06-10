@@ -66,10 +66,11 @@ export class CreateRestaurantComponent implements OnInit {
     if (this.editAdd == "Add"){
       this.storeServie.create(store).pipe(takeUntil(this.unsibscribe)).subscribe(
         (rep) => {
+          
           this.router.navigate(['/restaurants'])
         },
         (error) => {
-          console.log(error);
+          this.router.navigate(['/restaurants'])
         }
       );
     }else{
