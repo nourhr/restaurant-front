@@ -15,10 +15,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
-import { ListStoreComponent } from './components/store/list-store/list-store.component';
-import { CreateStoreComponent } from './components/store/create-store/create-store.component';
-import { UpdateStoreComponent } from './components/store/update-store/update-store.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ListRestaurantComponent } from './components/restaurant/list-retaurants/list-restaurant.component';
+import { CreateRestaurantComponent } from './components/restaurant/create-restaurant/create-restaurant.component';
+import { UpdateRestaurantComponent } from './components/restaurant/update-restaurant/update-restaurant.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CreateIngredientComponent } from './components/ingredient/create-ingredient/create-ingredient.component';
 import { ListIngredientComponent } from './components/ingredient/list-ingredient/list-ingredient.component';
 import { UpdateIngredientComponent } from './components/ingredient/update-ingredient/update-ingredient.component';
@@ -33,6 +33,8 @@ import { UpdateArticleComponent } from './components/article/update-article/upda
 import { ListCategoryComponent } from './components/category/list-category/list-category.component';
 import { CreateCategoryComponent } from './components/category/create-category/create-category.component';
 import { UpdateCategoryComponent } from './components/category/update-category/update-category.component';
+import {HttpRequestInterceptor} from "./interceptors/http-request.interceptor";
+import { ListPlatPersoComponent } from './components/restaurant/list-plat-perso/list-plat-perso.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,9 @@ import { UpdateCategoryComponent } from './components/category/update-category/u
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    ListStoreComponent,
-    CreateStoreComponent,
-    UpdateStoreComponent,
+    ListRestaurantComponent,
+    CreateRestaurantComponent,
+    UpdateRestaurantComponent,
     CreateIngredientComponent,
     ListIngredientComponent,
     UpdateIngredientComponent,
@@ -59,7 +61,8 @@ import { UpdateCategoryComponent } from './components/category/update-category/u
     UpdateArticleComponent,
     ListCategoryComponent,
     CreateCategoryComponent,
-    UpdateCategoryComponent
+    UpdateCategoryComponent,
+    ListPlatPersoComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import { UpdateCategoryComponent } from './components/category/update-category/u
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

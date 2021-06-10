@@ -1,8 +1,8 @@
 import { Ingredient } from './ingredient.model';
 
-export interface Store {
-    id?: number;
-    address?: string;
-    name?: string;
-    ingredients?: Ingredient[];
+export class Store {
+  idResto: number;
+  adresseResto: string;
+  nomResto: string;
+    ingredients: Ingredient[];
 }

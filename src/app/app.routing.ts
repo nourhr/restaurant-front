@@ -9,9 +9,9 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { InputsSectionComponent } from './sections/inputs-section/inputs-section.component';
-import { ListStoreComponent } from './components/store/list-store/list-store.component';
-import { CreateStoreComponent } from './components/store/create-store/create-store.component';
-import { UpdateStoreComponent } from './components/store/update-store/update-store.component';
+import { ListRestaurantComponent } from './components/restaurant/list-retaurants/list-restaurant.component';
+import { CreateRestaurantComponent } from './components/restaurant/create-restaurant/create-restaurant.component';
+import { UpdateRestaurantComponent } from './components/restaurant/update-restaurant/update-restaurant.component';
 import { ListIngredientComponent } from './components/ingredient/list-ingredient/list-ingredient.component';
 import { CreateIngredientComponent } from './components/ingredient/create-ingredient/create-ingredient.component';
 import { UpdateIngredientComponent } from './components/ingredient/update-ingredient/update-ingredient.component';
@@ -26,11 +26,13 @@ import {UpdateArticleComponent} from './components/article/update-article/update
 import {ListCategoryComponent} from './components/category/list-category/list-category.component';
 import {CreateCategoryComponent} from './components/category/create-category/create-category.component';
 import {UpdateCategoryComponent} from './components/category/update-category/update-category.component';
+import {ListPlatPersoComponent} from "./components/restaurant/list-plat-perso/list-plat-perso.component";
 
 const routes: Routes = [
-    { path: 'stores',     component: ListStoreComponent },
-    { path: 'stores/create',     component: CreateStoreComponent },
-    { path: 'stores/:id',     component: UpdateStoreComponent },
+    { path: 'restaurants',     component: ListRestaurantComponent },
+    { path: 'restaurant/:id',     component: CreateRestaurantComponent },
+    { path: 'restaurant/platPerso/:id',  component:  ListPlatPersoComponent },
+    { path: 'stores/:id',     component: UpdateRestaurantComponent },
     { path: 'ingredients',     component: ListIngredientComponent },
     { path: 'ingredients/create',     component: CreateIngredientComponent },
     { path: 'ingredients/:id',     component: UpdateIngredientComponent },
