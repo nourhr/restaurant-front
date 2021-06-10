@@ -46,9 +46,7 @@ export class UpdateStoreComponent implements OnInit {
 
   // update store
   async updateStore() {
-    await this.storeService.update(this.store).then(
-      store => this.router.navigate(['/stores'])
-    );
+  
   }
 
 }
