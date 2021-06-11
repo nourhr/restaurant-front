@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'src/app/models/category.model';
 import { Recipe } from 'src/app/models/recipe.model';
+import { CategoryService } from 'src/app/services/category.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -11,67 +13,90 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class UpdateRecipeComponent implements OnInit {
 
-  // Attributes
-  recipe: Recipe;
-  recipe_id;
+   // Attributes
+   recipe: Recipe;
+   idPlatPerso;
+   idCat: Number;
+   nomCat: String;
+   categories: Category[];
+ 
 
-  // Form groupe add Category project
+// Form groupe add Category project
   recipeForm: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    time: new FormControl('', [Validators.required]),
-    nbrPersons: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required])
-  });
-  constructor(private recipeService:RecipeService,
-    private router: Router,
-    private readonly route: ActivatedRoute) { }
+  nomPlatPerso: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  descrPlatPerso: new FormControl('', [Validators.required]),
+  categorie: new FormControl('', [Validators.required]),
+  
 
-  ngOnInit(): void {
-  //this.show();
+});
+constructor(private recipeService: RecipeService, private route: Router ,
+  private readonly router: ActivatedRoute, private categoryService: CategoryService) { }
+
+ngOnInit(): void {
+  this.getCategories();
+
+}
+async getCategories() {
+
+  this.categories = await this.categoryService.getAll();
+
 }
 
+get nomPlatPerso() {
+  return this.recipeForm.get('nomPlatPerso');
+}
 
- /* get name() {
-    return this.recipeForm.get('name');
-  }
-  
-  get time() {
-    return this.recipeForm.get('time');
-  }
-  
-  get nbrPersons() {
-    return this.recipeForm.get('nbrPersons');
-  }
+get descrPlatPerso() {
+  return this.recipeForm.get('descrPlatPerso');
+}
+get categorie() {
+  return this.recipeForm.get('categorie');
+}
 
-  get description() {
-    return this.recipeForm.get('description');
-  }
-
-  async show()  {
-    this.route.paramMap.subscribe(params => {
-      this.recipe_id = params.get("id");
-      });
-      this.recipe = await this.recipeService.getRecipeById(this.recipe_id);
-      this.name.setValue(this.recipe.name);
-      this.time.setValue(this.recipe.time);
-      this.nbrPersons.setValue(this.recipe.nbrPersons);
-      this.description.setValue(this.recipe.description);
-  }
-
-  async updateRecipe(){
-    this.recipe = {
-      name: this.name.value,
-      time: this.time.value,
-      nbrPersons: this.nbrPersons.value,
-      description: this.description.value
+getRecipeById() {
+  this.recipe = {
+    
+    nomPlatPerso: this.nomPlatPerso.value,
+    descrPlatPerso: this.descrPlatPerso.value,
+    categorie: {
+    idCat: this.categorie.value,
     }
-    const r = await this.recipeService.update(this.recipe, this.recipe_id);
-    this.router.navigate(['/recipes']);
+  };
+    
+  this.router.paramMap.subscribe(result => {
+    this.idPlatPerso = Number(result.get('id'));
+    this.recipeService.getRecipeById(this.idPlatPerso).then(
+      recipe => {
+        this.recipe = recipe;
+      }
+    );
+  });
+
+}
+
+async show()  {
+    this.router.paramMap.subscribe(params => {
+      this.idPlatPerso = params.get("id");
+      });
+      this.recipe = await this.recipeService.getRecipeById(this.idPlatPerso);
+      this.nomPlatPerso.setValue(this.recipe.nomPlatPerso);
+      this.descrPlatPerso.setValue(this.recipe.descrPlatPerso);
+      
+  }
+  async updateRecipe() {
+    // init object with data from form
+
+    this.recipe = {
+      
+      nomPlatPerso: this.nomPlatPerso.value,
+      descrPlatPerso: this.descrPlatPerso.value,
+      categorie: {
+      idCat: this.categorie.value,
+      }
+    };
+    const r = await this.recipeService.update(this.recipe,this.idPlatPerso);
+    this.route.navigate(['/recipes']);
     console.log(r);
   }
 
-  deleteRecIng(id: number) {
-    console.log(id);
-    this.recipeService.deleteIngr(id);
-  }*/
 }

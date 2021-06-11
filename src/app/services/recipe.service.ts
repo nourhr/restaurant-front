@@ -44,10 +44,10 @@ export class RecipeService {
   
 
   // put (update)
-  update(recipe: Recipe, recipeId:number): Promise<any> | null {
+  update(recipe: Recipe, id:number): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.put<Recipe>(`${this.base_url}recipes/${recipeId}`, recipe, {headers}).toPromise();
+    return this.http.put<Recipe>(`${this.base_url}platperso/${id}`, recipe, {headers}).toPromise();
   }
 
   // delete
