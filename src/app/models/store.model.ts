@@ -6,3 +6,4 @@ export interface Store {
     name?: string;
     ingredients?: Ingredient[];
 }
+
