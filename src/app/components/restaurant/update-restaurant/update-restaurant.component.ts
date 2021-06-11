@@ -6,10 +6,10 @@ import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-update-store',
-  templateUrl: './update-store.component.html',
-  styleUrls: ['./update-store.component.css']
+  templateUrl: './update-restaurant.component.html',
+  styleUrls: ['./update-restaurant.component.css']
 })
-export class UpdateStoreComponent implements OnInit {
+export class UpdateRestaurantComponent implements OnInit {
 
   store: Store;
   idStore: number;
@@ -33,7 +33,7 @@ export class UpdateStoreComponent implements OnInit {
 
   // initial store
   getStoreById() {
-    this.store = { name: '', address: '' };
+    //this.store = { name: '', address: '' };
     this.activatedrouter.paramMap.subscribe(result => {
       this.idStore = Number(result.get('id'));
       this.storeService.getById(this.idStore).then(
@@ -45,10 +45,6 @@ export class UpdateStoreComponent implements OnInit {
   }
 
   // update store
-  async updateStore() {
-    await this.storeService.update(this.store).then(
-      store => this.router.navigate(['/stores'])
-    );
-  }
+
 
 }
