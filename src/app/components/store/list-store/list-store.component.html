@@ -3,12 +3,14 @@
     <div class="">
       <div class="col-xs-3">
         <ul *ngIf="stores.length">
-          <li *ngFor="let store of stores">
-            <i>{{store.name}}</i> <br>
+          <li *ngFor="let a of stores">
+            <i>{{a.nomResto}}</i> <br>
             <i>Address</i> :
-            <p> {{store.address}} </p>
-            <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteStore(store.id)">Delete</button>
-            <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/stores/', store.id]">Edit</button>
+            <p> {{a.adresseResto}}</p>
+            <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteStore(a.idResto)">Delete</button>
+            <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/stores/', a.idResto]">Edit</button>
+            <button class="btn btn-outline-success m-1 col-xs-8" [routerLink]="['/store/platPerso/', a.idResto]">List</button>
+
           </li>
         </ul>
       </div>

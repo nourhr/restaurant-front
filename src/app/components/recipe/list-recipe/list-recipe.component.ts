@@ -14,10 +14,11 @@ export class ListRecipeComponent implements OnInit {
   error: string | null = null;
 
   constructor( private recipeService: RecipeService) { 
-    this.getAllRecipes();
+    
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.getAllRecipes();
   }
 
   async getAllRecipes() {
@@ -33,9 +34,11 @@ export class ListRecipeComponent implements OnInit {
     }
   }
 
-  deleteRecipe(id: number) {
-    console.log(id);
-    this.recipeService.delete(id);
-    this.getAllRecipes();
+  
+  deleteRecipe(idPlatPerso: number) {
+    console.log(idPlatPerso);
+    this.recipeService.delete(idPlatPerso).then(
+      value => this.getAllRecipes()
+    );
   }
 }

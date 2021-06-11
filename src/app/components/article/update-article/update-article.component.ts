@@ -5,6 +5,8 @@ import {Article} from '../../../models/article.model';
 import {ArticleService} from '../../../services/article.service';
 import {Category} from '../../../models/category.model';
 import {CategoryService} from '../../../services/category.service';
+import { StoreService } from 'src/app/services/store.service';
+import { Store } from 'src/app/models/store.model';
 
 @Component({
   selector: 'app-update-article',
@@ -17,9 +19,12 @@ export class UpdateArticleComponent implements OnInit {
   // Attributes
   article: Article;
   idCat: Number;
+  idResto: Number;
   idPlat;
   nomCat: String;
+  nomResto: String;
   categories: Category[];
+  stores: Store[];
   
 
   // Form groupe add Category project
@@ -27,15 +32,17 @@ export class UpdateArticleComponent implements OnInit {
     nomPlat: new FormControl('', [Validators.required, Validators.minLength(5)]),
     description: new FormControl('', [Validators.required]),
     categorie: new FormControl('', [Validators.required]),
+    restaurant: new FormControl('', [Validators.required]),
 
   });
 
 
   constructor(private articleService: ArticleService, private router: Router,
-    private readonly route: ActivatedRoute, private categoryService: CategoryService) { }
+    private readonly route: ActivatedRoute, private categoryService: CategoryService , private restoService: StoreService) { }
 
   ngOnInit(): void {
     this.getCategories();
+    this.geStores();
     this.show();
     this.updateArticle();
 
@@ -45,8 +52,15 @@ export class UpdateArticleComponent implements OnInit {
     this.categories = await this.categoryService.getAll();
 
   }
+  async geStores() {
 
+    this.stores = await this.restoService.getAll();
 
+  }
+
+  get restaurant() {
+    return this.articleForm.get('restaurant');
+  }
   get categorie() {
     return this.articleForm.get('categorie');
   }
@@ -75,6 +89,9 @@ export class UpdateArticleComponent implements OnInit {
       description: this.description.value,
       categorie: {
         idCat: this.categorie.value,
+      },
+      restaurant: {
+        idResto: this.restaurant.value,
       }
     };
     const r = await this.articleService.update(this.article,this.idPlat);

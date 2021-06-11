@@ -15,6 +15,8 @@ export class IngredientsService {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
     headers.append('Content-Type' , 'application/json');
     headers.append('Access-Control-Allow-Origin' , '*'); // Access-Control-Allow-Origin: https://www.mydomain.com
+    headers.append('Access-Control-Allow-Methods' , 'GET, POST, PUT'); 
+    
   }
 
 
@@ -22,12 +24,11 @@ export class IngredientsService {
   getAll(): Promise<Ingredient[]> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    console.log('ho')
     return this.http.get<Ingredient[]>(`${this.base_url}ingredients`, {headers}).toPromise();
 
 
   }
-
+ 
   // post
   create(ingredient: Ingredient): Promise<Ingredient> {
     const headers = new HttpHeaders();
@@ -39,7 +40,12 @@ export class IngredientsService {
   update(ingredient: Ingredient): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.put<Ingredient>(`${this.base_url}ingredients/${ingredient.id}`, ingredient, {headers}).toPromise();
+    return this.http.put<Ingredient>(`${this.base_url}ingredients`, ingredient, {headers}).toPromise();
+  }
+  updateIngredient(ingredient: Ingredient,id:number): Promise<Ingredient> | null {
+    const headers = new HttpHeaders();
+    this.createHeaders(headers);
+    return this.http.put<Ingredient>(`${this.base_url}updatePlatIngredient/${id}`, ingredient, {headers}).toPromise();
   }
 
   // delete

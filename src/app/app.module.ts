@@ -15,9 +15,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
-import { ListStoreComponent } from './components/store/list-store/list-store.component';
-import { CreateStoreComponent } from './components/store/create-store/create-store.component';
-import { UpdateStoreComponent } from './components/store/update-store/update-store.component';
+import { ListstoreComponent } from './components/store/list-store/list-store.component';
+import { CreatestoreComponent } from './components/store/create-store/create-store.component';
+import { UpdatestoreComponent } from './components/store/update-store/update-store.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateIngredientComponent } from './components/ingredient/create-ingredient/create-ingredient.component';
 import { ListIngredientComponent } from './components/ingredient/list-ingredient/list-ingredient.component';
@@ -43,9 +43,9 @@ import { UpdateCategoryComponent } from './components/category/update-category/u
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    ListStoreComponent,
-    CreateStoreComponent,
-    UpdateStoreComponent,
+    ListstoreComponent,
+    CreatestoreComponent,
+    UpdatestoreComponent,
     CreateIngredientComponent,
     ListIngredientComponent,
     UpdateIngredientComponent,

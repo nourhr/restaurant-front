@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient.model';
+import { Recipe } from 'src/app/models/recipe.model';
 import { Store } from 'src/app/models/store.model';
 import { IngredientsService } from 'src/app/services/ingredients.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -15,8 +17,10 @@ export class UpdateIngredientComponent implements OnInit {
 
   // initial data
   ingredient: Ingredient;
-  idIngredient: number;
-  stores: Store[];
+  id;
+  recipes: Recipe[];
+  idPlatPerso;
+  recipe:Recipe;
 
   // Form groupe add ingredient
   ingredientForm: FormGroup = new FormGroup({
@@ -24,11 +28,11 @@ export class UpdateIngredientComponent implements OnInit {
     reference: new FormControl('', [Validators.required, Validators.minLength(3)]),
     quantity: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
-    store: new FormControl('')
+    platPersonalise: new FormControl('')
   });
 
   constructor(
-    private storeService: StoreService,
+    private storeService: RecipeService,
     private ingredientService: IngredientsService,
     private activatedrouter: ActivatedRoute,
     private router: Router
@@ -36,12 +40,13 @@ export class UpdateIngredientComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.getStores();
-    //this.getIngredientById();
+    this.getStores();
+    this.getIngredientById();
+    this.show();
   }
 
   // getters
- /* get name() {
+  get name() {
     return this.ingredientForm.get('name');
   }
 
@@ -57,22 +62,27 @@ export class UpdateIngredientComponent implements OnInit {
     return this.ingredientForm.get('price');
   }
 
-  get store() {
-    return this.ingredientForm.get('store');
+  get platPersonalise() {
+    return this.ingredientForm.get('platPersonalise');
   }
 
 
   // initial store
   getIngredientById() {
     this.ingredient = {
-      name: '',
-      price: null,
-      reference: '',
-      quantity: null,
-      store: {id: null} };
+      
+      name: this.name.value,
+      price: this.price.value,
+      reference: this.reference.value,
+      quantity: this.quantity.value,
+      recipe:{
+        idPlatPerso:this.platPersonalise.value,
+      } 
+    };
+      
     this.activatedrouter.paramMap.subscribe(result => {
-      this.idIngredient = Number(result.get('id'));
-      this.ingredientService.getById(this.idIngredient).then(
+      this.id = Number(result.get('id'));
+      this.ingredientService.getById(this.id).then(
         ingredient => {
           this.ingredient = ingredient;
         }
@@ -82,16 +92,36 @@ export class UpdateIngredientComponent implements OnInit {
 
   // Get list stores
   async getStores() {
-    await this.storeService.getAll().then(
-      stores => this.stores = stores
-    );
+    this.recipes = await this.storeService.getAll();
+  }
+  async show()  {
+    this.activatedrouter.paramMap.subscribe(params => {
+      this.id = params.get("id");
+      });
+      this.recipe = await this.storeService.getRecipeById(this.idPlatPerso);
+      this.name.setValue(this.ingredient.name);
+      this.price.setValue(this.ingredient.price);
+      this.quantity.setValue(this.ingredient.quantity);
+      this.reference.setValue(this.ingredient.reference);      
   }
 
-  updateIngredient() {
-    this.ingredient.store = {id: this.store.value};
-    this.ingredientService.update(this.ingredient).then(
-      ingredient => this.router.navigate(['/ingredients'])
-    );
-  }*/
+  async updateIngredient() {
+    // init object with data from form
+
+    this.ingredient= {
+
+      name: this.name.value,
+      price: this.price.value,
+      reference: this.quantity.value,
+      quantity: this.quantity.value,
+      recipe:{
+        idPlatPerso:this.platPersonalise.value,
+      }  
+    };
+    const r = await this.ingredientService.updateIngredient(this.ingredient,this.id);
+    this.router.navigate(['/ingredients']);
+    console.log(r);
+  }
+
 
 }

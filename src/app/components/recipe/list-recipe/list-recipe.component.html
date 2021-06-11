@@ -1,28 +1,25 @@
 <div *ngIf="!loading">
-    <div class="container">
-      <div class="">
-        <div class="mat-grid-list">
-          <ul *ngIf="recipes.length">
-            <li *ngFor="let recipe of recipes">
-              <i>{{recipe.name}}</i> <br>
-              <i>Ingredients:</i> :
-              <div>
-                  <ul *ngFor="let in of recipe.ingredients">
-                    <li>{{in.ingredient.name}} : {{in.quantity}} pices </li>
-                  </ul>
-              </div>
-              <i>Nombre de personnes</i> : {{recipe.nbrPersons}} <br>
-              <i>Duration</i> : {{recipe.time}}
-              <p>{{recipe.description}}</p>
-              <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteRecipe(recipe.id)">Delete</button>
-              <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/recipes/', recipe.id]">Edit</button>
-            </li>
-          </ul>
-        </div>
+  <div class="container">
+    <H4> Liste des Plats Personaliser</H4>
+    <div class="">
+      <div class="col-xs-10">
+        <ul *ngIf="recipes.length">
+          <li *ngFor="let a of recipes">
+            <i>Dish Name</i> :
+            <i>{{a.nomPlatPerso}}</i> <br>
+            <i>Description</i> :
+            <i> {{a.descrPlatPerso}} </i><br>
+            <i>Category</i> :
+            <i> {{a.categorie.nomCat}} </i><br>
+            <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteRecipe(a.idPlatPerso)">Delete</button>
+            <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/recipes/',a.idPlatPerso]">Edit</button>
+          </li>
+        </ul>
       </div>
     </div>
-    <span *ngIf="error" >{{error}}</span>
   </div>
-  <div *ngIf="loading">
+  <span *ngIf="error">{{error}}</span>
+</div>
+<div *ngIf="loading">
   chargement !
-  </div>
+</div>

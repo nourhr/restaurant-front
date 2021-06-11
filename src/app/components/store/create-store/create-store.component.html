@@ -1,17 +1,22 @@
-<form action="" [formGroup]="storeForm" (ngSubmit)="addStore()">
-  <div class="form-group container">
-    <fieldset>
-      <input type="text"
-      [ngClass]="{'is-invalid': storeForm.invalid && storeForm.get('name').touched && storeForm.get('name').errors != null}"
-      class="m-3 form-control"
-      placeholder="Name"
-      formControlName="name">
-      <input type="text"
-      [ngClass]="{'is-invalid': storeForm.invalid && storeForm.get('address').touched && storeForm.get('address').errors != null}"
-      class="m-3 form-control"
-      placeholder="Address"
-      formControlName="address">
-    </fieldset>
-    <button class="btn btn-success" [disabled]="storeForm.invalid">Add Store</button>
+<div w-50 text-center>
+  <h2>{{editAdd}}  Restaurant</h2>
   </div>
-</form>
+  <form action="" [formGroup]="restaurantFrom" (ngSubmit)="addStore()" *ngIf="showForm">
+    <div class="form-group container">
+      <fieldset>
+        <input type="text"
+  
+               class="m-3 form-control"
+               placeholder="Name"
+               formControlName="name">
+        <input type="text"
+  
+        class="m-3 form-control"
+        placeholder="Address"
+        formControlName="address">
+      </fieldset>
+      <button  type="submit" [disabled]="!restaurantFrom.valid"
+               class="btn btn-success" >{{editAdd}} Restaurant</button>
+    </div>
+  </form>
+  

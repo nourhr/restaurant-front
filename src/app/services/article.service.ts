@@ -21,7 +21,7 @@ export class ArticleService {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
     headers.append('Content-Type' , 'application/json');
     headers.append('Access-Control-Allow-Origin' , '*'); // Access-Control-Allow-Origin: https://www.mydomain.com
-    headers.append('Access-Control-Allow-Methods' , 'GET, POST, PUT')
+    headers.append('Access-Control-Allow-Methods' , 'GET, POST, PUT');
   
     
   }

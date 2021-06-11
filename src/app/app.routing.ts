@@ -9,9 +9,9 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { InputsSectionComponent } from './sections/inputs-section/inputs-section.component';
-import { ListStoreComponent } from './components/store/list-store/list-store.component';
-import { CreateStoreComponent } from './components/store/create-store/create-store.component';
-import { UpdateStoreComponent } from './components/store/update-store/update-store.component';
+import { ListstoreComponent } from './components/store/list-store/list-store.component';
+import { CreatestoreComponent } from './components/store/create-store/create-store.component';
+import { UpdatestoreComponent } from './components/store/update-store/update-store.component';
 import { ListIngredientComponent } from './components/ingredient/list-ingredient/list-ingredient.component';
 import { CreateIngredientComponent } from './components/ingredient/create-ingredient/create-ingredient.component';
 import { UpdateIngredientComponent } from './components/ingredient/update-ingredient/update-ingredient.component';
@@ -28,9 +28,9 @@ import {CreateCategoryComponent} from './components/category/create-category/cre
 import {UpdateCategoryComponent} from './components/category/update-category/update-category.component';
 
 const routes: Routes = [
-    { path: 'stores',     component: ListStoreComponent },
-    { path: 'stores/create',     component: CreateStoreComponent },
-    { path: 'stores/:id',     component: UpdateStoreComponent },
+    { path: 'stores',     component: ListstoreComponent },
+    { path: 'stores/create',     component: CreatestoreComponent },
+    { path: 'stores/:id',     component: UpdatestoreComponent },
     { path: 'ingredients',     component: ListIngredientComponent },
     { path: 'ingredients/create',     component: CreateIngredientComponent },
     { path: 'ingredients/:id',     component: UpdateIngredientComponent },
