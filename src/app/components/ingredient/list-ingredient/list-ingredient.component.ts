@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient.model';
 import { IngredientsService } from 'src/app/services/ingredients.service';
 
+
 @Component({
   selector: 'app-list-ingredient',
   templateUrl: './list-ingredient.component.html',
@@ -22,7 +23,6 @@ export class ListIngredientComponent implements OnInit {
   ngOnInit(): void {
     this.getAllIngredients();
   }
-
   async getAllIngredients() {
     try {
       this.loading = true;

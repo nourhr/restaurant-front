@@ -100,9 +100,15 @@ export class UpdateIngredientComponent implements OnInit {
         idPlatPerso: this.recipe.value,
       }
     };
-    const r = await this.ingredientService.update(this.ingredient);
-    this.router.navigate(['/articles']);
-    console.log(r);
+    //const r = await
+    if(this.ingredientService.update(this.ingredient)){
+      this.router.navigate(['/ingredients']);
+    };
+    //this.router.navigate(['/articles']);
+    //console.log(r);
+    //if(r){
+    //  this.router.navigate(['/ingredients']);
+   // }
     // this.ingredient.platPersonalise= {idPlatPerso: this.recipe.value};
     // this.ingredientService.update(this.ingredient).then(
     //   ingredient => this.router.navigate(['/ingredients'])

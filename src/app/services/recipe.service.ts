@@ -15,7 +15,7 @@ export class RecipeService {
 
   createHeaders(headers: HttpHeaders) {
     // headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); // token headers
-    headers.append('Content-Type' , 'application/json');
+    //headers.append('Content-Type' , 'application/json');
     headers.append('Access-Control-Allow-Origin' , '*'); // Access-Control-Allow-Origin: https://www.mydomain.com
   }
 
@@ -30,7 +30,7 @@ export class RecipeService {
   getRecipeById(id:number): Promise<Recipe> {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.get<Recipe>(`${this.base_url}recipes/${id}`, {headers}).toPromise();
+    return this.http.get<Recipe>(`${this.base_url}platperso/${id}`, {headers}).toPromise();
   }
 
 
@@ -38,21 +38,21 @@ export class RecipeService {
   create(recipe: Recipe): Promise<Recipe> | undefined {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.post<Recipe>(`${this.base_url}recipes`, recipe).toPromise();
+    return this.http.post<Recipe>(`${this.base_url}platperso`, recipe).toPromise();
   }
 
   // put (update)
   update(recipe: Recipe, recipeId:number): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.put<Recipe>(`${this.base_url}recipes/${recipeId}`, recipe, {headers}).toPromise();
+    return this.http.put<Recipe>(`${this.base_url}platperso/${recipeId}`, recipe, {headers}).toPromise();
   }
 
   // delete
   delete(recipe_id: number): Promise<any> | null {
     const headers = new HttpHeaders();
     this.createHeaders(headers);
-    return this.http.delete<Recipe>(`${this.base_url}recipes/${recipe_id}`, {headers}).toPromise();
+    return this.http.delete<Recipe>(`${this.base_url}platperso/${recipe_id}`, {headers}).toPromise();
   }
 
   // Ingredient
