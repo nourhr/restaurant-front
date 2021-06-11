@@ -42,6 +42,7 @@ export class CreateIngredientComponent implements OnInit {
   // Get list stores
   async getStores() {
     this.recipes = await this.recipeService.getAll();
+    console.log("hi");
     console.log(this.recipes)
   }
 
@@ -79,6 +80,7 @@ export class CreateIngredientComponent implements OnInit {
       }
     };
     console.log(this.ingredient)
+    console.log(this.recipes)
     const s = await this.ingredientService.create(this.ingredient);
     this.router.navigate(['/ingredients']);
     console.log(s);
