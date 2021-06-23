@@ -4,7 +4,7 @@ From node:latest as node
 RUN mkdir -p /app
 
 WORKDIR /app
-
+#Copy working dirrectory to /app
 COPY . /app
 
 RUN npm install
